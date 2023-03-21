@@ -1,4 +1,4 @@
-unit IPtoLocation.MainUnit;
+﻿unit IPtoLocation.MainUnit;
 
 interface
 
@@ -23,8 +23,10 @@ type
     RESTClient1: TRESTClient;
     RESTRequest1: TRESTRequest;
     RESTResponse1: TRESTResponse;
+    Button3: TButton;
     procedure Button2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -76,4 +78,29 @@ begin
   Memo1.Lines.Add(RESTResponse1.Content);
 end;
 
+procedure TFormMain.Button3Click(Sender: TObject);
+begin
+  var ArrayElement: TJSONValue;
+  var JSONValue := TJSONObject.ParseJSONValue(RESTResponse1.Content);
+  var JSONArray := JSONValue.GetValue<TJSONArray>('currencies');
+  try
+    if JSONValue is TJSONObject then
+    begin
+      Memo1.Lines.Add('City: ' + JSONValue.GetValue<String>('city'));
+      Memo1.Lines.Add('Country Code: ' + JSONValue.GetValue<String>('country_code'));
+      Memo1.Lines.Add('Continent Name: ' + JSONValue.GetValue<String>('continent_name'));
+
+      for ArrayElement in JSONArray do
+      begin
+        Memo1.Lines.Add('Info: ' + ArrayElement.GetValue<String>('name'));
+        Memo1.Lines.Add('Info: ' + ArrayElement.GetValue<String>('code'));
+      end;
+
+    end;
+  finally
+    JSONValue.Free;
+  end;
+end;
+
 end.
+

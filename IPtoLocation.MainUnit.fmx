@@ -1,6 +1,7 @@
 object FormMain: TFormMain
   Left = 0
   Top = 0
+  BorderStyle = SizeToolWin
   Caption = 'IP to Location - Demo using Delphi'
   ClientHeight = 480
   ClientWidth = 636
@@ -40,7 +41,7 @@ object FormMain: TFormMain
     StyledSettings = [Family, FontColor]
     Position.X = 208.000000000000000000
     Position.Y = 136.000000000000000000
-    Size.Width = 393.000000000000000000
+    Size.Width = 177.000000000000000000
     Size.Height = 33.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
@@ -13453,6 +13454,19 @@ object FormMain: TFormMain
       end>
     Left = 552
     Top = 400
+  end
+  object Button3: TButton
+    StyledSettings = [Family, FontColor]
+    Position.X = 417.000000000000000000
+    Position.Y = 136.000000000000000000
+    Size.Width = 184.000000000000000000
+    Size.Height = 33.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 9
+    Text = 'Fetch'
+    TextSettings.Font.Size = 18.000000000000000000
+    TextSettings.Font.StyleExt = {00060000000000000004000000}
+    OnClick = Button3Click
   end
   object RESTClient1: TRESTClient
     Params = <>
